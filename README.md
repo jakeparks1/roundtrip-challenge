@@ -1,24 +1,18 @@
-# README
+# Roundtrip Engineering Challenge [LINK](https://www.notion.so/Roundtrip-Engineering-Challenge-61ed07e1298a48e28a77e2a8c6d3e8a6)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Since the challenge was intentionally vague, the way I decided to complete it was by making a RSpec test that validated that, given a JSON fixture, the information was saved to the correct ActiveRecord models with the the appropriate associations.  The RSpec test lives at
 
-Things you may want to cover:
+    spec/services/insurance_webhook_handler_spec.rb
 
-* Ruby version
+The JSON fixture lives at
 
-* System dependencies
+    spec/support/fixtures/acme_health_webhook.json
 
-* Configuration
+The code that parses the JSON into the correct models is a service at:
 
-* Database creation
+    app/services/insurance_webhook_handler.rb
 
-* Database initialization
+The models are `Insurance`, `Plan`, `Company`, `Insured`, and `Address`, because these were the distinctions in the API.  All relationships are has_one / belongs_to because in the JSON the sub-objects are single objects and not arrays.  However if the API changes and arrays are given (for example, now there are many `Insured` to one `Insurance`) it is trivial to change to a has_many / belongs_to.
 
-* How to run the test suite
+`Address` is polymorphic because both `Company` and `Insured` have Addresses
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
