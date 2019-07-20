@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe InsuranceWebhookHandler do
   let(:response_body) { File.open(File.dirname(__FILE__) + '/../support/fixtures/acme_health_webhook.json').read }
 
-  describe '' do
-    it '' do
+  describe 'InsuranceWebhookHandler#parse' do
+    it 'parses and stores models to the database' do
       InsuranceWebhookHandler.parse(response_body)
       insurance = Insurance.last
       plan = insurance.plan

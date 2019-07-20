@@ -12,7 +12,7 @@ The code that parses the JSON into the correct models is a service at:
 
     app/services/insurance_webhook_handler.rb
 
-The models are `Insurance`, `Plan`, `Company`, `Insured`, and `Address`, because these were the distinctions in the API.  All relationships are has_one / belongs_to because in the JSON the sub-objects are single objects and not arrays.  However if the API changes and arrays are given (for example, now there are many `Insured` to one `Insurance`) it is trivial to change to a has_many / belongs_to.
+The models are `Insurance`, `Plan`, `Company`, `Insured`, and `Address`, because these were the distinctions in the API.  All relationships are `has_one` / `belongs_to` because in the JSON the sub-objects are single objects and not arrays.  However if the API changes and arrays are given (for example, now there are many `Insured` to one `Insurance`) it is trivial to change to a `has_many` / `belongs_to`.
 
 `Address` is polymorphic because both `Company` and `Insured` have Addresses
 
